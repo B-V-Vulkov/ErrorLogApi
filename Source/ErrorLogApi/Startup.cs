@@ -1,31 +1,73 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using ErrorLogApi.Data;
+using ErrorLogApi.GlobalConstants;
+using ErrorLogApi.Infrastructure;
+using ErrorLogApi.Services;
+using ErrorLogApi.Services.Contracts;
+using ErrorLogApi.Services.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
 
 namespace ErrorLogApi
 {
     public class Startup
     {
+        private readonly IConfiguration configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            var securitySection = this.configuration
+                .GetSection("ApplicationSettings")
+                .GetSection("Security");
+
+            services.Configure<SecuritySettings>(securitySection);
+
+            var securitySettings = securitySection.Get<SecuritySettings>();
+
+            var key = Encoding.UTF8.GetBytes(securitySettings.SecretKey);
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    //ClockSkew = TimeSpan.Zero
+                };
+            });
+
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IErrorLogDbContext, ErrorLogDbContext>();
+
+            services.AddAutoMapper(
+                typeof(ControllerMappingProfile).Assembly,
+                typeof(ServiceMappingProfile).Assembly);
+
+            services.Configure<ApplicationSettings>(
+                this.configuration.GetSection("ApplicationSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +81,8 @@ namespace ErrorLogApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

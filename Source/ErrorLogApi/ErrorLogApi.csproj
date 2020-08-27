@@ -4,5 +4,21 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ErrorLogApi.GlobalConstants\ErrorLogApi.GlobalConstants.csproj" />
+    <ProjectReference Include="..\ErrorLogApi.Services\ErrorLogApi.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ResponseModels\" />
+  </ItemGroup>
+
 
 </Project>
