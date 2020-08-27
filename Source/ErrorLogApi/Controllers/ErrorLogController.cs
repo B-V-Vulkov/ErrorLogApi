@@ -17,7 +17,7 @@
         [HttpPost("GetAsync")]
         public async Task<IActionResult> GetAsync()
         {
-            return Ok("Aide!!!");
+            return Ok();
         }
     }
 }

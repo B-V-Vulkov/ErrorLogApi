@@ -1,22 +1,22 @@
-using AutoMapper;
-using ErrorLogApi.Data;
-using ErrorLogApi.GlobalConstants;
-using ErrorLogApi.Infrastructure;
-using ErrorLogApi.Services;
-using ErrorLogApi.Services.Contracts;
-using ErrorLogApi.Services.Infrastructure;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Text;
-
 namespace ErrorLogApi
 {
+    using AutoMapper;
+    using ErrorLogApi.Data;
+    using ErrorLogApi.GlobalConstants;
+    using ErrorLogApi.Infrastructure;
+    using ErrorLogApi.Services;
+    using ErrorLogApi.Services.Contracts;
+    using ErrorLogApi.Services.Infrastructure;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.IdentityModel.Tokens;
+    using System;
+    using System.Text;
+
     public class Startup
     {
         private readonly IConfiguration configuration;
@@ -54,20 +54,20 @@ namespace ErrorLogApi
                     ValidateLifetime = true,
                     ValidateAudience = false,
                     ValidateIssuer = false,
-                    //ClockSkew = TimeSpan.Zero
+                    ClockSkew = TimeSpan.Zero
                 };
             });
 
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IJwtService, JwtService>();
-            services.AddScoped<IErrorLogDbContext, ErrorLogDbContext>();
+            services.Configure<ApplicationSettings>(
+                this.configuration.GetSection("ApplicationSettings"));
 
             services.AddAutoMapper(
                 typeof(ControllerMappingProfile).Assembly,
                 typeof(ServiceMappingProfile).Assembly);
 
-            services.Configure<ApplicationSettings>(
-                this.configuration.GetSection("ApplicationSettings"));
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IErrorLogDbContext, ErrorLogDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
