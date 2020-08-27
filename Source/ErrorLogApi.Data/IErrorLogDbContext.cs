@@ -7,5 +7,7 @@
     public interface IErrorLogDbContext
     {
         IMongoCollection<UserDataModel> UserCollection { get; }
+
+        IMongoCollection<ErrorLogDataModel> LogCollection { get; }
     }
 }

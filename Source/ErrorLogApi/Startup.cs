@@ -65,8 +65,9 @@ namespace ErrorLogApi
                 typeof(ControllerMappingProfile).Assembly,
                 typeof(ServiceMappingProfile).Assembly);
 
-            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IErrorLogService, ErrorLogService>();
             services.AddScoped<IErrorLogDbContext, ErrorLogDbContext>();
         }
 

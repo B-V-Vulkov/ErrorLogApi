@@ -21,11 +21,11 @@
             this.database = client.GetDatabase(this.databaseSettings.DatabaseName);
 
             this.UserCollection = database.GetCollection<UserDataModel>(this.databaseSettings.UserCollectionName);
-            this.LogCollection = database.GetCollection<LogDataModel>(this.databaseSettings.LogCollectionName);
+            this.LogCollection = database.GetCollection<ErrorLogDataModel>(this.databaseSettings.LogCollectionName);
         }
 
         public IMongoCollection<UserDataModel> UserCollection { get; }
 
-        public IMongoCollection<LogDataModel> LogCollection { get; }
+        public IMongoCollection<ErrorLogDataModel> LogCollection { get; }
     }
 }

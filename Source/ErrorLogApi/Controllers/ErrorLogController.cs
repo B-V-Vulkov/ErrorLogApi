@@ -14,9 +14,17 @@
     [Route("ErrorLog")]
     public class ErrorLogController : ControllerBase
     {
+        private readonly IErrorLogService errorLogService;
+
+        public ErrorLogController(IErrorLogService errorLogService)
+        {
+            this.errorLogService = errorLogService;
+        }
+
         [HttpPost("GetAsync")]
         public async Task<IActionResult> GetAsync()
         {
+            await errorLogService.InsertErrorLogAsync(new Services.Models.ErrorLog.ErrorLogServiceModel());
             return Ok();
         }
     }
