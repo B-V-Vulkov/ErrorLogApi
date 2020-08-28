@@ -9,7 +9,7 @@
         public Guid Id { get; set; }
 
         [BsonRequired]
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         [BsonRequired]
         public string HashedPassword { get; set; }

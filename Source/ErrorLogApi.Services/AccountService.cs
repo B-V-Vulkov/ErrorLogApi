@@ -6,50 +6,31 @@
 
     using Data;
     using Data.Models;
-    using Exceptions;
     using Security;
     using Contracts;
     using Models.Account;
+    using AutoMapper;
 
     public class AccountService : IAccountService
     {
+        private readonly IMapper mapper;
         private readonly IErrorLogDbContext dbContext;
-        private readonly IJwtService jwtService;
 
-        public AccountService(IErrorLogDbContext dbContext, IJwtService jwtService)
+        public AccountService(IErrorLogDbContext dbContext, IMapper mapper)
         {
+            this.mapper = mapper;
             this.dbContext = dbContext;
-            this.jwtService = jwtService;
         }
 
-        public async Task<LoginResultServiceModel> AuthenticateAsync(LoginServiceModel model)
+        public async Task<UserServiceModel> GetUserDataAsync(string username)
         {
             var filter = Builders<UserDataModel>.Filter
-                .Eq(x => x.UserName, model.UserName);
+                .Eq(x => x.Username, username);
 
             var user = await (await dbContext.UserCollection.FindAsync(filter))
                 .FirstOrDefaultAsync();
 
-            if (Object.Equals(user, null))
-            {
-                throw new InvalidUsernameOrPasswordException();
-            }
-
-            bool isValidPassword = PasswordHasher
-                .VerifyHashedPassword(user.HashedPassword, model.Password);
-
-            if (!isValidPassword)
-            {
-                throw new InvalidUsernameOrPasswordException();
-            }
-
-            var jwt = jwtService.GenerateJwt(user.UserName);
-
-            return new LoginResultServiceModel()
-            {
-                UserName = user.UserName,
-                Jwt = jwt
-            };
+            var test=  this.mapper.Map<UserDataModel>(user);
         }
     }
 }

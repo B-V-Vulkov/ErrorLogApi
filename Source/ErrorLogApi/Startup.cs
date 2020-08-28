@@ -18,9 +18,9 @@ namespace ErrorLogApi
 
         public void ConfigureServices(IServiceCollection services)
             => services
+                .AddApplicationSettingsConfiguration(this.configuration)
                 .AddJwtAuthentication(this.configuration.GetSecuritySettings())
                 .AddDbContext()
-            .AddTest(this.configuration)
                 .AddAServices()
                 .AddModelMapping()
                 .AddControllers();
@@ -29,6 +29,12 @@ namespace ErrorLogApi
             => app.UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()
+                .UseCors(options => 
+                {
+                    options.AllowAnyOrigin();
+                    options.AllowAnyHeader();
+                    options.AllowAnyMethod();
+                })
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();

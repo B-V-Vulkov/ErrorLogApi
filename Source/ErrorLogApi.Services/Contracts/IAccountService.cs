@@ -6,6 +6,6 @@
 
     public interface IAccountService
     {
-        Task<LoginResultServiceModel> AuthenticateAsync(LoginServiceModel requestModel);
+        Task<UserServiceModel> GetUserDataAsync(string username);
     }
 }

@@ -1,9 +1,10 @@
-﻿using ErrorLogApi.GlobalConstants;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace ErrorLogApi.Infrastructure
+﻿namespace ErrorLogApi.Infrastructure
 {
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
+    using GlobalConstants;
+
     public static class ConfigurationExtensions
     {
         public static SecuritySettings GetSecuritySettings(this IConfiguration configuration)
@@ -12,12 +13,10 @@ namespace ErrorLogApi.Infrastructure
                 .GetSection("ApplicationSettings")
                 .GetSection("Security");
 
-            //services.Configure<SecuritySettings>(securitySection);
-
             return securitySection.Get<SecuritySettings>();
         }
 
-        public static IServiceCollection AddTest(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApplicationSettingsConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             var applicationSettings = configuration
                 .GetSection("ApplicationSettings");

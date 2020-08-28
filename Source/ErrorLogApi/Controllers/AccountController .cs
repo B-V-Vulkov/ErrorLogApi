@@ -23,6 +23,11 @@
 
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync(LoginRequestModel requestModel)
-            => Ok(await this.accountService.AuthenticateAsync(this.mapper.Map<LoginServiceModel>(requestModel)));
+        {
+            var user = await this.accountService.GetUserDataAsync(requestModel.Username);
+
+
+            return Ok() 
+        }
     }
 }
