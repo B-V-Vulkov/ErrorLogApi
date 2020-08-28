@@ -1,6 +1,7 @@
 ﻿namespace ErrorLogApi.Infrastructure
 {
     using AutoMapper;
+
     using RequestModels.Account;
     using Services.Models.Account;
 
