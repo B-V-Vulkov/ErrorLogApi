@@ -6,7 +6,7 @@
     using AutoMapper;
 
     using Services.Contracts;
-    using Services.Models.Account;
+    using Services.Models.User;
     using RequestModels.Account;
 
     [Authorize]

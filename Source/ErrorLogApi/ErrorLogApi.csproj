@@ -16,9 +16,5 @@
     <ProjectReference Include="..\ErrorLogApi.Services\ErrorLogApi.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ResponseModels\" />
-  </ItemGroup>
-
 
 </Project>

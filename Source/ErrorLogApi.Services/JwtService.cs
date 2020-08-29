@@ -13,16 +13,13 @@
     public class JwtService : IJwtService
     {
         private readonly SecuritySettings securitySettings;
-
-        private readonly double liveTimeHours; 
-
+        private readonly double lifeTimeHours; 
         private readonly byte[] Key;
 
         public JwtService(IOptions<ApplicationSettings> options)
         {
             this.securitySettings = options.Value.Security;
-
-            this.liveTimeHours = Double.Parse(this.securitySettings.JwtLiveTimeHours);
+            this.lifeTimeHours = Double.Parse(this.securitySettings.JwtLifeTimeHours);
             this.Key = Encoding.UTF8.GetBytes(this.securitySettings.SecretKey);
         }
 
@@ -34,7 +31,7 @@
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 SigningCredentials = new SigningCredentials(key, algorithm),
-                Expires = DateTime.UtcNow.AddSeconds(30),
+                Expires = DateTime.UtcNow.AddSeconds(this.lifeTimeHours),
                 Subject = new ClaimsIdentity(new Claim[] 
                 {
                     new Claim(ClaimTypes.Name, userName)

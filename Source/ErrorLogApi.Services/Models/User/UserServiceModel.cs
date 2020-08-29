@@ -1,4 +1,4 @@
-﻿namespace ErrorLogApi.Services.Models.Account
+﻿namespace ErrorLogApi.Services.Models.User
 {
     public class UserServiceModel
     {

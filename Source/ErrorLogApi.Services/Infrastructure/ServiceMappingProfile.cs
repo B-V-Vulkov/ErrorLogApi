@@ -1,14 +1,16 @@
 ﻿namespace ErrorLogApi.Services.Infrastructure
 {
     using AutoMapper;
-    using ErrorLogApi.Data.Models;
-    using ErrorLogApi.Services.Models.Account;
+
+    using Data.Models;
+    using ErrorLogApi.Services.Models.User;
 
     public class ServiceMappingProfile : Profile
     {
         public ServiceMappingProfile()
         {
-            this.CreateMap<UserServiceModel, UserDataModel>();
+            this.CreateMap<UserDataModel, UserServiceModel>()
+                .ForMember(x => x.Password, opts => opts.MapFrom(x => x.HashedPassword));
         }
     }
 }

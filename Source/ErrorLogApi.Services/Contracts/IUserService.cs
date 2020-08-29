@@ -1,10 +1,9 @@
 ﻿namespace ErrorLogApi.Services.Contracts
 {
     using System.Threading.Tasks;
+    using Services.Models.User;
 
-    using Models.Account;
-
-    public interface IAccountService
+    public interface IUserService
     {
         Task<UserServiceModel> GetUserDataAsync(string username);
     }

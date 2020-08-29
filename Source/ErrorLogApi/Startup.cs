@@ -23,7 +23,10 @@ namespace ErrorLogApi
                 .AddDbContext()
                 .AddAServices()
                 .AddModelMapping()
-                .AddControllers();
+                .AddControllers(options =>
+                {
+                    options.SuppressAsyncSuffixInActionNames = false;
+                });
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             => app.UseRouting()

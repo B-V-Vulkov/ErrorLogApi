@@ -10,7 +10,7 @@
         public static SecuritySettings GetSecuritySettings(this IConfiguration configuration)
         {
             var securitySection = configuration
-                .GetSection("ApplicationSettings")
+                .GetSection(nameof(ApplicationSettings))
                 .GetSection("Security");
 
             return securitySection.Get<SecuritySettings>();
@@ -19,7 +19,7 @@
         public static IServiceCollection AddApplicationSettingsConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             var applicationSettings = configuration
-                .GetSection("ApplicationSettings");
+                .GetSection(nameof(ApplicationSettings));
 
             services.Configure<ApplicationSettings>(applicationSettings);
 

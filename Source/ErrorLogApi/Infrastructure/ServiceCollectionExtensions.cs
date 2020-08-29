@@ -26,7 +26,7 @@
         public static IServiceCollection AddAServices(this IServiceCollection services)
             => services
                 .AddScoped<IJwtService, JwtService>()
-                .AddScoped<IAccountService, AccountService>()
+                .AddScoped<IUserService, UserService>()
                 .AddScoped<IErrorLogService, ErrorLogService>();
 
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, SecuritySettings securitySettings)

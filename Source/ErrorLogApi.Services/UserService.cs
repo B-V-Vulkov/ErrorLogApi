@@ -1,22 +1,20 @@
 ﻿namespace ErrorLogApi.Services
 {
-    using System;
     using System.Threading.Tasks;
     using MongoDB.Driver;
+    using AutoMapper;
 
     using Data;
     using Data.Models;
-    using Security;
     using Contracts;
-    using Models.Account;
-    using AutoMapper;
+    using Models.User;
 
-    public class AccountService : IAccountService
+    public class UserService : IUserService
     {
         private readonly IMapper mapper;
         private readonly IErrorLogDbContext dbContext;
 
-        public AccountService(IErrorLogDbContext dbContext, IMapper mapper)
+        public UserService(IErrorLogDbContext dbContext, IMapper mapper)
         {
             this.mapper = mapper;
             this.dbContext = dbContext;
@@ -30,7 +28,7 @@
             var user = await (await dbContext.UserCollection.FindAsync(filter))
                 .FirstOrDefaultAsync();
 
-            var test=  this.mapper.Map<UserDataModel>(user);
+            return this.mapper.Map<UserServiceModel>(user);
         }
     }
 }

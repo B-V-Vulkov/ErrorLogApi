@@ -4,6 +4,6 @@
     {
         public string SecretKey { get; set; }
 
-        public string JwtLiveTimeHours { get; set; }
+        public string JwtLifeTimeHours { get; set; }
     }
 }
