@@ -15,10 +15,13 @@
         public Guid Id { get; set; }
 
         [BsonRequired]
-        public DateTime ErrorDateTime { get; set; }
+        public int ApplicationId { get; set; }
 
         [BsonRequired]
-        public string Url { get; set; }
+        public DateTime Date { get; set; }
+
+        [BsonRequired]
+        public int StatusCode { get; set; }
 
         [BsonRequired]
         public string SchoolId { get; set; }
@@ -27,24 +30,24 @@
         public string UserId { get; set; }
 
         [BsonRequired]
+        public string Exception { get; set; }
+
+        public string InnerException { get; set; }
+
+        [BsonRequired]
         public string ControllerName { get; set; }
 
         [BsonRequired]
         public string ActionName { get; set; }
 
         [BsonRequired]
-        public string ExceptionMessage { get; set; }
-
-        [BsonRequired]
-        public string InnerExceptionMessage { get; set; }
+        public string RequestUrl { get; set; }
 
         [BsonRequired]
         public string StackTrace { get; set; }
 
-        [BsonRequired]
         public string RequestPeyload { get; set; }
 
-        [BsonRequired]
         public IEnumerable<RequestHeaderDataModel> RequestHeaders { get; set; }
     }
 }

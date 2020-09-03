@@ -1,11 +1,17 @@
 ﻿namespace ErrorLogApi.Services.Contracts
 {
+    using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Models.ErrorLog;
 
     public interface IErrorLogService
     {
-        Task InsertErrorLogAsync(ErrorLogServiceModel errorLog);
+        Task<ErrorLogServiceModel> GetErrorLogAsync(Guid errorLogId);
+
+        Task<IEnumerable<ErrorLogListingServiceModel>> GetErrorLogListAsync(int applicationId);
+
+        Task<bool> InsertErrorLogAsync(InsertErrorLogServiceModel errorLog);
     }
 }

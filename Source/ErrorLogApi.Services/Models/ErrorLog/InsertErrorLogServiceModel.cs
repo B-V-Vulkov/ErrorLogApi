@@ -3,12 +3,11 @@
     using System;
     using System.Collections.Generic;
 
-    public class ErrorLogServiceModel
+    public class InsertErrorLogServiceModel
     {
-        public ErrorLogServiceModel()
-        {
-            this.RequestHeaders = new List<RequestHeaderServiceModel>();
-        }
+        public int ApplicationId { get; set; }
+
+        public DateTime Date { get; set; }
 
         public int StatusCode { get; set; }
 
@@ -19,8 +18,6 @@
         public string Exception { get; set; }
 
         public string InnerException { get; set; }
-
-        public DateTime Date { get; set; }
 
         public string ControllerName { get; set; }
 

@@ -4,10 +4,10 @@
     using MongoDB.Driver;
     using AutoMapper;
 
-    using Data;
-    using Data.Models;
     using Contracts;
     using Models.User;
+    using Data;
+    using Data.Models;
 
     public class UserService : IUserService
     {

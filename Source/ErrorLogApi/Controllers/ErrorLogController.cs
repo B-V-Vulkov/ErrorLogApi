@@ -6,26 +6,33 @@
     using AutoMapper;
 
     using Services.Contracts;
-    using Services.Models.User;
-    using RequestModels.Account;
+    using RequestModels.ErrorLog;
+    using Services.Models.ErrorLog;
 
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("ErrorLog")]
     public class ErrorLogController : ControllerBase
     {
+        private readonly IMapper mapper;
         private readonly IErrorLogService errorLogService;
 
-        public ErrorLogController(IErrorLogService errorLogService)
+        public ErrorLogController(IMapper mapper, IErrorLogService errorLogService)
         {
+            this.mapper = mapper;
             this.errorLogService = errorLogService;
         }
 
-        [HttpPost("GetAsync")]
-        public async Task<IActionResult> GetAsync()
-        {
-            await errorLogService.InsertErrorLogAsync(new Services.Models.ErrorLog.ErrorLogServiceModel());
-            return Ok();
-        }
+        [HttpPost("GetErrorLog")]
+        public async Task<ActionResult<ErrorLogServiceModel>> GetErrorLogAsync(GetErrorLogRequestModel requestModel)
+            => Ok(await this.errorLogService.GetErrorLogAsync(requestModel.ErrorLogId));
+
+        [HttpPost("GetErrorLogList")]
+        public async Task<ActionResult<ErrorLogListingServiceModel>> GetErrorLogListAsync(GetErrorLogListRequestModel requestModel)
+            => Ok(await this.errorLogService.GetErrorLogListAsync(requestModel.ApplicationId));
+
+        [HttpPost("InsertErrorLog")]
+        public async Task<IActionResult> InsertErrorLogAsync(InsertErrorLogRequestModel requestModel)
+            => Ok(await this.errorLogService.InsertErrorLogAsync(this.mapper.Map<InsertErrorLogServiceModel>(requestModel)));
     }
 }
