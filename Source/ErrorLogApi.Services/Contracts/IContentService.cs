@@ -8,6 +8,6 @@
     {
         IEnumerable<ApplicationServiceModel> GetApplicatins();
 
-        IEnumerable<TimeDurationServiceModel> GetTimeDurationDropdown()
+        IEnumerable<TimeDurationServiceModel> GetTimeDurationDropdown();
     }
 }

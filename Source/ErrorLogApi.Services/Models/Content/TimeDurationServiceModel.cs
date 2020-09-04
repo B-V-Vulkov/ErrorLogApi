@@ -4,8 +4,8 @@
 
     public class TimeDurationServiceModel
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
 
-        public DateTime StartDay { get; set; }
+        public string Name { get; set; }
     }
 }

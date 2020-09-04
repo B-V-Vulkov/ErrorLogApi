@@ -26,39 +26,37 @@ namespace ErrorLogApi.Services
 
         public IEnumerable<TimeDurationServiceModel> GetTimeDurationDropdown()
         {
-            DateTime today = DateTime.Today;
-
             return new List<TimeDurationServiceModel>()
             {
                 new TimeDurationServiceModel()
                 {
-                    Name = "Today",
-                    StartDay = today,
+                    Id = 1,
+                    Name = "Today"
                 },
                 new TimeDurationServiceModel()
                 {
-                    Name = "Last Week",
-                    StartDay = today.AddDays(7),
+                    Id = 2,
+                    Name = "Last Week"
                 },
                 new TimeDurationServiceModel()
                 {
-                    Name = "Last Month",
-                    StartDay = today.AddMonths(1),
+                    Id = 3,
+                    Name = "Last Month"
                 },
                 new TimeDurationServiceModel()
                 {
-                    Name = "Last 6 Months",
-                    StartDay = today.AddMonths(6),
+                    Id = 4,
+                    Name = "Last 6 Months"
                 },
                 new TimeDurationServiceModel()
                 {
-                    Name = "Last Year",
-                    StartDay = today.AddYears(1),
+                    Id = 5,
+                    Name = "Last Year"
                 },
                 new TimeDurationServiceModel()
                 {
-                    Name = "All Time",
-                    StartDay = DateTime.MinValue,
+                    Id = 10,
+                    Name = "All Time"
                 }
             };
         }

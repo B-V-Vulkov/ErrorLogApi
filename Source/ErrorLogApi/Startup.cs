@@ -29,15 +29,16 @@ namespace ErrorLogApi
                 });
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-            => app.UseRouting()
-                .UseAuthentication()
-                .UseAuthorization()
-                .UseCors(options => 
+            => app
+                .UseRouting()
+                .UseCors(options =>
                 {
                     options.AllowAnyOrigin();
                     options.AllowAnyHeader();
                     options.AllowAnyMethod();
                 })
+                .UseAuthentication()
+                .UseAuthorization()
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();

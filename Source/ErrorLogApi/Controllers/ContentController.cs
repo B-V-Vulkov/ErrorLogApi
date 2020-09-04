@@ -1,10 +1,11 @@
 ﻿namespace ErrorLogApi.Controllers
 {
+    using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
-    using System.Collections.Generic;
-    using ErrorLogApi.Services.Models.Content;
-    using ErrorLogApi.Services.Contracts;
+
+    using Services.Contracts;
+    using Services.Models.Content;
 
     [Authorize]
     [ApiController]

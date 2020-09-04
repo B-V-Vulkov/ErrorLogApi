@@ -31,10 +31,22 @@
             return this.mapper.Map<ErrorLogServiceModel>(errorLog);
         }
 
-        public async Task<IEnumerable<ErrorLogListingServiceModel>> GetErrorLogListAsync(int applicationId, DateTime timeDuration)
+        public async Task<IEnumerable<ErrorLogListingServiceModel>> GetErrorLogListAsync(int applicationId, int timeDurationId)
         {
-            var filter = Builders<ErrorLogDataModel>.Filter.Eq(x => x.ApplicationId, applicationId) 
-                & Builders<ErrorLogDataModel>.Filter.Gte(x => x.Date.Day, timeDuration.Day);
+            var today = DateTime.Today;
+
+            var timeDuration = timeDurationId switch
+            {
+                1 => today,
+                2 => today.AddDays(-7),
+                3 => today.AddMonths(-1),
+                4 => today.AddMonths(-6),
+                5 => today.AddYears(-1),
+                _ => DateTime.MinValue
+            };
+
+            var filter = Builders<ErrorLogDataModel>.Filter.Eq(x => x.ApplicationId, applicationId)
+                & Builders<ErrorLogDataModel>.Filter.Gte(x => x.Date, timeDuration);
 
             var errorLogs = await (await dbContext.LogCollection.FindAsync(filter))
                 .ToListAsync();

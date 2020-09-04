@@ -29,7 +29,7 @@
 
         [HttpPost("GetErrorLogList")]
         public async Task<ActionResult<ErrorLogListingServiceModel>> GetErrorLogListAsync(GetErrorLogListRequestModel requestModel)
-            => Ok(await this.errorLogService.GetErrorLogListAsync(requestModel.ApplicationId, requestModel.TimeDuration));
+            => Ok(await this.errorLogService.GetErrorLogListAsync(requestModel.ApplicationId, requestModel.TimeDurationId));
 
         [HttpPost("InsertErrorLog")]
         public async Task<IActionResult> InsertErrorLogAsync(InsertErrorLogRequestModel requestModel)

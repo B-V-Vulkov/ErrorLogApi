@@ -1,6 +1,5 @@
 ﻿namespace ErrorLogApi.RequestModels.ErrorLog
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class GetErrorLogListRequestModel
@@ -9,6 +8,6 @@
         public int ApplicationId { get; set; }
 
         [Required]
-        public DateTime TimeDuration { get; set; }
+        public int TimeDurationId { get; set; }
     }
 }
