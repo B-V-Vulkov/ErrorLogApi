@@ -7,5 +7,7 @@
     public interface IContentService
     {
         IEnumerable<ApplicationServiceModel> GetApplicatins();
+
+        IEnumerable<TimeDurationServiceModel> GetTimeDurationDropdown()
     }
 }

@@ -23,10 +23,8 @@
             => Ok(this.contentService.GetApplicatins());
 
 
-
-
-
-
-
+        [HttpGet("GetTimeDurationDropdown")]
+        public ActionResult<IEnumerable<TimeDurationServiceModel>> GetTimeDurationDropdown()
+            => Ok(this.contentService.GetTimeDurationDropdown());
     }
 }
