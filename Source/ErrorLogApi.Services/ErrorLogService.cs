@@ -23,8 +23,7 @@
 
         public async Task<ErrorLogServiceModel> GetErrorLogAsync(Guid errorLogId)
         {
-            var filter = Builders<ErrorLogDataModel>.Filter
-                .Eq(x => x.Id, errorLogId);
+            var filter = Builders<ErrorLogDataModel>.Filter.Eq(x => x.Id, errorLogId);
 
             var errorLog = await (await dbContext.LogCollection.FindAsync(filter))
                 .FirstOrDefaultAsync();
@@ -32,10 +31,10 @@
             return this.mapper.Map<ErrorLogServiceModel>(errorLog);
         }
 
-        public async Task<IEnumerable<ErrorLogListingServiceModel>> GetErrorLogListAsync(int applicationId)
+        public async Task<IEnumerable<ErrorLogListingServiceModel>> GetErrorLogListAsync(int applicationId, DateTime timeDuration)
         {
-            var filter = Builders<ErrorLogDataModel>.Filter
-                .Eq(x => x.ApplicationId, applicationId);
+            var filter = Builders<ErrorLogDataModel>.Filter.Eq(x => x.ApplicationId, applicationId) 
+                & Builders<ErrorLogDataModel>.Filter.Gte(x => x.Date.Day, timeDuration.Day);
 
             var errorLogs = await (await dbContext.LogCollection.FindAsync(filter))
                 .ToListAsync();
@@ -47,8 +46,7 @@
         {
             try
             {
-                await dbContext.LogCollection
-                    .InsertOneAsync(this.mapper.Map<ErrorLogDataModel>(errorLog));
+                await dbContext.LogCollection.InsertOneAsync(this.mapper.Map<ErrorLogDataModel>(errorLog));
             }
             catch (Exception)
             {

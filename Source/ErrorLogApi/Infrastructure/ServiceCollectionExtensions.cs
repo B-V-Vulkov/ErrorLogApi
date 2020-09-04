@@ -27,7 +27,8 @@
             => services
                 .AddScoped<IJwtService, JwtService>()
                 .AddScoped<IUserService, UserService>()
-                .AddScoped<IErrorLogService, ErrorLogService>();
+                .AddScoped<IErrorLogService, ErrorLogService>()
+                .AddScoped<IContentService, ContentService>();
 
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, SecuritySettings securitySettings)
         {

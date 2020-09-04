@@ -31,7 +31,7 @@
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 SigningCredentials = new SigningCredentials(key, algorithm),
-                Expires = DateTime.UtcNow.AddSeconds(this.lifeTimeHours),
+                Expires = DateTime.UtcNow.AddHours(this.lifeTimeHours),
                 Subject = new ClaimsIdentity(new Claim[] 
                 {
                     new Claim(ClaimTypes.Name, userName)

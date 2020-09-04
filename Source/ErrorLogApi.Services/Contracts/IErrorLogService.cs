@@ -10,7 +10,7 @@
     {
         Task<ErrorLogServiceModel> GetErrorLogAsync(Guid errorLogId);
 
-        Task<IEnumerable<ErrorLogListingServiceModel>> GetErrorLogListAsync(int applicationId);
+        Task<IEnumerable<ErrorLogListingServiceModel>> GetErrorLogListAsync(int applicationId, DateTime timeDuration);
 
         Task<bool> InsertErrorLogAsync(InsertErrorLogServiceModel errorLog);
     }

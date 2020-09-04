@@ -9,7 +9,7 @@
     using RequestModels.ErrorLog;
     using Services.Models.ErrorLog;
 
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("ErrorLog")]
     public class ErrorLogController : ControllerBase
@@ -29,7 +29,7 @@
 
         [HttpPost("GetErrorLogList")]
         public async Task<ActionResult<ErrorLogListingServiceModel>> GetErrorLogListAsync(GetErrorLogListRequestModel requestModel)
-            => Ok(await this.errorLogService.GetErrorLogListAsync(requestModel.ApplicationId));
+            => Ok(await this.errorLogService.GetErrorLogListAsync(requestModel.ApplicationId, requestModel.TimeDuration));
 
         [HttpPost("InsertErrorLog")]
         public async Task<IActionResult> InsertErrorLogAsync(InsertErrorLogRequestModel requestModel)
