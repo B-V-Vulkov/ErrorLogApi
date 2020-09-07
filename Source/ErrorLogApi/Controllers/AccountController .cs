@@ -1,26 +1,24 @@
 ﻿namespace ErrorLogApi.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using AutoMapper;
 
+    using Security;
     using Services.Contracts;
     using RequestModels.Account;
-    using System;
-    using ErrorLogApi.Security;
     using ResponseModels.Account;
 
     [ApiController]
     [Route("Account")]
     public class AccountController : ControllerBase
     {
-        private readonly IMapper mapper;
         private readonly IJwtService jwtService;
         private readonly IUserService accountService;
 
-        public AccountController(IMapper mapper, IJwtService jwtService, IUserService accountService)
+        public AccountController(IJwtService jwtService, IUserService accountService)
         {
-            this.mapper = mapper;
             this.jwtService = jwtService;
             this.accountService = accountService;
         }

@@ -12,7 +12,6 @@
     using Contracts;
     using Models.ErrorLog;
 
-
     public class ErrorLogService : IErrorLogService
     {
         private readonly IErrorLogDbContext dbContext;
