@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-    using AutoMapper;
 
     using Security;
     using Services.Contracts;

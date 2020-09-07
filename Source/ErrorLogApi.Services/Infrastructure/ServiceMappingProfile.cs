@@ -3,8 +3,8 @@
     using AutoMapper;
 
     using Data.Models;
-    using ErrorLogApi.Services.Models.ErrorLog;
-    using ErrorLogApi.Services.Models.User;
+    using Models.User;
+    using Models.ErrorLog;
 
     public class ServiceMappingProfile : Profile
     {

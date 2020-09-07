@@ -6,8 +6,8 @@
     using AutoMapper;
 
     using Services.Contracts;
-    using RequestModels.ErrorLog;
     using Services.Models.ErrorLog;
+    using RequestModels.ErrorLog;
 
     [Authorize]
     [ApiController]

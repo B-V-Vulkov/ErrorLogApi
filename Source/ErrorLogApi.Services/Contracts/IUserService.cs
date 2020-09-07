@@ -1,7 +1,8 @@
 ﻿namespace ErrorLogApi.Services.Contracts
 {
     using System.Threading.Tasks;
-    using Services.Models.User;
+
+    using Models.User;
 
     public interface IUserService
     {

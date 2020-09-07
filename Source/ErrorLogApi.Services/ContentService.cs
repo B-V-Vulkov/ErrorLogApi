@@ -1,10 +1,10 @@
-﻿using ErrorLogApi.Services.Contracts;
-using ErrorLogApi.Services.Models.Content;
-using System;
-using System.Collections.Generic;
-
-namespace ErrorLogApi.Services
+﻿namespace ErrorLogApi.Services
 {
+    using System.Collections.Generic;
+
+    using Contracts;
+    using Models.Content;
+
     public class ContentService : IContentService
     {
         public IEnumerable<ApplicationServiceModel> GetApplicatins()
