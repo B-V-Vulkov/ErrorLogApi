@@ -1,14 +1,17 @@
 ﻿namespace ErrorLogApi.Services
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using AutoMapper;
-    using Contracts;
-    using Data;
-    using ErrorLogApi.Data.Models;
-    using ErrorLogApi.Services.Models.ErrorLog;
     using MongoDB.Driver;
+    using AutoMapper;
+
+    using Data;
+    using Data.Models;
+    using Contracts;
+    using Models.ErrorLog;
+
 
     public class ErrorLogService : IErrorLogService
     {
@@ -48,8 +51,9 @@
             var filter = Builders<ErrorLogDataModel>.Filter.Eq(x => x.ApplicationId, applicationId)
                 & Builders<ErrorLogDataModel>.Filter.Gte(x => x.Date, timeDuration);
 
-            var errorLogs = await (await dbContext.LogCollection.FindAsync(filter))
-                .ToListAsync();
+            var errorLogs = (await (await dbContext.LogCollection.FindAsync(filter))
+                .ToListAsync())
+                .OrderByDescending(x => x.Date);
 
             return this.mapper.Map<IEnumerable<ErrorLogListingServiceModel>>(errorLogs);
         }
