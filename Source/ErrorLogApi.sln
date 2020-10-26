@@ -5,15 +5,13 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErrorLogApi", "ErrorLogApi\ErrorLogApi.csproj", "{FA48CF4B-94DF-4CF5-BC95-1703F599FF7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogApi.Services", "ErrorLogApi.Services\ErrorLogApi.Services.csproj", "{D7AF7386-F811-472D-ADD8-F8B3BBAE5633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErrorLogApi.Services", "ErrorLogApi.Services\ErrorLogApi.Services.csproj", "{D7AF7386-F811-472D-ADD8-F8B3BBAE5633}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogApi.Data", "ErrorLogApi.Data\ErrorLogApi.Data.csproj", "{ED1438B8-2ECA-4CAD-872B-99200F70106D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErrorLogApi.Data", "ErrorLogApi.Data\ErrorLogApi.Data.csproj", "{ED1438B8-2ECA-4CAD-872B-99200F70106D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogApi.GlobalConstants", "ErrorLogApi.GlobalConstants\ErrorLogApi.GlobalConstants.csproj", "{41A3B0B0-73D7-4E4B-A813-FEFE32C87DCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErrorLogApi.GlobalConstants", "ErrorLogApi.GlobalConstants\ErrorLogApi.GlobalConstants.csproj", "{41A3B0B0-73D7-4E4B-A813-FEFE32C87DCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogApi.Security", "ErrorLogApi.Security\ErrorLogApi.Security.csproj", "{D8BEB363-A1BB-4A4A-BE0D-19A878D1D786}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogApi.Exceptions", "ErrorLogApi.Exceptions\ErrorLogApi.Exceptions.csproj", "{D21295B9-5BC2-49E2-91C6-74A8EFA496A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErrorLogApi.Security", "ErrorLogApi.Security\ErrorLogApi.Security.csproj", "{D8BEB363-A1BB-4A4A-BE0D-19A878D1D786}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{D8BEB363-A1BB-4A4A-BE0D-19A878D1D786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8BEB363-A1BB-4A4A-BE0D-19A878D1D786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8BEB363-A1BB-4A4A-BE0D-19A878D1D786}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D21295B9-5BC2-49E2-91C6-74A8EFA496A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D21295B9-5BC2-49E2-91C6-74A8EFA496A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D21295B9-5BC2-49E2-91C6-74A8EFA496A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D21295B9-5BC2-49E2-91C6-74A8EFA496A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

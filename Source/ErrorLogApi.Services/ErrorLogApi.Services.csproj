@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ErrorLogApi.Data\ErrorLogApi.Data.csproj" />
-    <ProjectReference Include="..\ErrorLogApi.Exceptions\ErrorLogApi.Exceptions.csproj" />
     <ProjectReference Include="..\ErrorLogApi.Security\ErrorLogApi.Security.csproj" />
   </ItemGroup>
 
